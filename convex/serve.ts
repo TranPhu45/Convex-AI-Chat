@@ -12,7 +12,7 @@ import { embedTexts } from "./ingest/embed";
 import { internal } from "./_generated/api";
 import { Id } from "./_generated/dataModel";
 
-const OPENAI_MODEL = "gpt-3.5-turbo";
+const OPENAI_MODEL = "gpt-4o";
 
 export const answer = internalAction({
   args: {
@@ -28,7 +28,7 @@ export const answer = internalAction({
 
     const searchResults = await ctx.vectorSearch("embeddings", "byEmbedding", {
       vector: embedding,
-      limit: 8,
+      limit: 20,
     });
 
     const relevantDocuments = await ctx.runQuery(internal.serve.getChunks, {
@@ -126,7 +126,7 @@ export const updateBotMessage = internalMutation(
 );
 
 export const getFileContent = internalQuery(
-  async (ctx, { fileId }: { fileId: string }) => {
+  async (_ctx, { fileId }: { fileId: string }) => {
     const response = await fetch(`https://your-file-storage-url/${fileId}`);
     const content = await response.text(); // Hoặc response.json() nếu là JSON
     return content;

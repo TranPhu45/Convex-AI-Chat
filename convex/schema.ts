@@ -25,6 +25,6 @@ export default defineSchema({
     .index("byChunkId", ["chunkId"])
     .vectorIndex("byEmbedding", {
       vectorField: "embedding",
-      dimensions: 1536,
+      dimensions: 3072,
     }),
 });

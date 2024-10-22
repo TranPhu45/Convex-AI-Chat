@@ -2,7 +2,7 @@ import { v } from "convex/values";
 import { map } from "modern-async";
 import OpenAI from "openai";
 import { api } from "../_generated/api";
-import { Id } from "../_generated/dataModel";
+//import { Id } from "../_generated/dataModel";
 import { action, mutation, query } from "../_generated/server";
 import { paginate } from "../helpers";
 
@@ -73,7 +73,7 @@ export async function embedTexts(texts: string[]) {
   const openai = new OpenAI();
   const { data } = await openai.embeddings.create({
     input: texts,
-    model: "text-embedding-ada-002",
+    model: "text-embedding-3-large",
   });
   return data.map(({ embedding }) => embedding);
 }
